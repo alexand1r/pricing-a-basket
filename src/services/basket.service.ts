@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Item } from "../data/item.interface";
+import { Item } from '../data/item.interface';
 
 @Injectable()
 export class BasketService {
-  items : any = {};
-  total : number = 0;
-  empty : boolean = true;
+  items: any = {};
+  total = 0;
+  empty = true;
 
-  addItem(item : Item) {
+  addItem(item: Item) {
     if (!this.items.hasOwnProperty(item.name)) {
       this.items[item.name] = 1;
     } else {
@@ -18,7 +18,7 @@ export class BasketService {
     this.total += item.price;
   }
 
-  removeItem(item : Item) {
+  removeItem(item: Item) {
     if (this.items.hasOwnProperty(item.name)) {
       if (this.items[item.name] >= 1) {
         this.items[item.name]--;
@@ -29,12 +29,14 @@ export class BasketService {
     if (this.checkIfEmpty()) this.empty = true;
   }
 
-  private checkIfEmpty() : boolean{
+  private checkIfEmpty(): boolean {
     let counter = 0;
-    for (let item of this.items) {
-      if (item > 0) counter++;
+    for (const item of this.items) {
+      if (item > 0) {
+        counter++;
+      }
     }
 
-    return (counter == Object.keys(this.items).length);
+    return (counter === Object.keys(this.items).length);
   }
 }

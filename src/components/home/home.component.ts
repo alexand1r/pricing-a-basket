@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './home.html'
 })
 export class HomeComponent {
-  title = 'Pricing A Basket'
+  title = 'Pricing A Basket';
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Item} from "../data/item.interface";
+import {Item} from '../data/item.interface';
 
 @Injectable()
 export class GoodsService {
-  getGoods() : Array<Item> {
+  getGoods(): Array<Item> {
     return [
       {id: 1, name: 'Peas', price: 0.95, amount: 'per bag'},
       {id: 2, name: 'Eggs', price: 2.10, amount: 'per dozen'},

@@ -8,11 +8,9 @@ const api = 'http://apilayer.net/api/live?access_key=a5a53e00054b4de4781c0ab111d
 export class CurrencyService {
   constructor(private http: Http) {}
 
-  getCurrencies() : Array<string> {
-    return [
-        'USD', 'GBP', 'EUR', 'CAD', 'PLN'
-      ]
-  };
+  getCurrencies(): Array<string> {
+    return ['USD', 'GBP', 'EUR', 'CAD', 'PLN'];
+  }
 
   getCurrencyRates() {
     return this.http.get(api).toPromise();

@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { BasketService } from "../../services/basket.service";
-import { CurrencyService } from "../../services/currency.service";
+import { BasketService } from '../../services/basket.service';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
-  selector: 'basket',
+  selector: 'app-basket',
   templateUrl: './basket.html'
 })
 export class BasketComponent implements OnInit {
-  emptyMsg : string = 'There are no items in your basket!';
-  total : number;
-  items : any = {};
-  empty : boolean;
-  currencies : Array<string>;
+  emptyMsg = 'There are no items in your basket!';
+  total: number;
+  items: any = {};
+  empty: boolean;
+  currencies: Array<string>;
   rates: Array<{}>;
   convertedTotal: number;
   currency: string;
 
   constructor(
-    private basket : BasketService,
-    private currencyService : CurrencyService
+    private basket: BasketService,
+    private currencyService: CurrencyService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class BasketComponent implements OnInit {
   }
 
   onChange(currency: string) {
-    this.convertedTotal = this.total * this.rates["quotes"]["USD" + currency];
+    this.convertedTotal = this.total * this.rates['quotes']['USD' + currency];
     this.currency = currency;
   }
 
