@@ -1,0 +1,197 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  background: #222;
+}
+
+#nav {
+  width: 100%;
+  min-height: 7vw;
+}
+
+.link {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  display: inline-block;
+  width: 49%;
+  min-height: 7vw;
+  line-height: 7vw;
+  text-decoration: none;
+  color: darkgoldenrod;
+  margin: 10px 0;
+  outline: none;
+  border-radius: 5px;
+}
+
+.link:hover {
+  color: #222;
+  background: #eee;
+  cursor: pointer;
+  outline: none;
+}
+
+.link:focus {
+  outline: none;
+}
+
+#content {
+  min-height: 30vw;
+  color: white;
+}
+
+#title {
+  line-height: 30vw;
+  min-height: 30vw;
+  color: white;
+  font-family: 'Lobster', cursive;
+}
+
+#title h1 {
+  font-weight: normal;
+}
+
+#pick {
+  font-size: 25px;
+  text-align: left;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.item {
+  padding: 15px 0;
+  font-family: 'Encode Sans Condensed', sans-serif;
+}
+
+.item-info {
+  display: inline-block;
+  /*font-family: 'Encode Sans Condensed', sans-serif;*/
+}
+
+.right {
+  float: right;
+}
+
+.control-btn {
+  width: 10%;
+  font-weight: bolder;
+  color: white;
+  padding: 2px;
+  margin: 10px 15px 0 0;
+  display: inline-block;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.add {
+  background: green;
+}
+
+.add:hover{
+  background: darkgreen;
+}
+
+.remove {
+  background: darkred;
+}
+
+.remove:hover {
+  background: red;
+}
+
+.control-btn:hover {
+  cursor: pointer;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+#basket {
+  font-size: 25px;
+  text-align: left;
+  margin: 0 auto;
+  padding: 10vw 0;
+  width: 50%;
+}
+
+.empty {
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+}
+
+#total {
+  font-family: 'Lato', sans-serif;
+}
+
+.select {
+  font-family: 'Kanit', sans-serif;
+  -webkit-margin-before: 2.7em;
+  -webkit-margin-after: 2.7em;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+}
+
+select {
+  width: 80px;
+  padding:3px;
+  margin: 0;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+  -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+  box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+  background: #f8f8f8;
+  color:#222;
+  border:none;
+  outline:none;
+  display: inline-block;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  cursor:pointer;
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select {padding-right:18px}
+}
+
+label {position:relative}
+label:after {
+  content:'<>';
+  font-family: 'Consolas', monospace;
+  font-size: 11px;
+  color:#aaa;
+  -webkit-transform:rotate(90deg);
+  -moz-transform:rotate(90deg);
+  -ms-transform:rotate(90deg);
+  transform:rotate(90deg);
+  right:8px; top:2px;
+  padding:0 0 2px;
+  border-bottom:1px solid #ddd;
+  position:absolute;
+  pointer-events:none;
+}
+label:before {
+  content:'';
+  right:6px; top:0;
+  width:20px; height:20px;
+  background:#f8f8f8;
+  position:absolute;
+  pointer-events:none;
+  display:block;
+}
+
+@media(max-width: 600px) {
+  .link {
+    padding: 15px 0;
+  }
+}

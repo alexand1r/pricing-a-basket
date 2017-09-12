@@ -1,0 +1,14 @@
+<div id="pick">
+  <div class="item" *ngFor="let item of items">
+    <div class="item-info">{{item.name}} - {{item.price | currency:'USD':true}} {{item.amount}}</div>
+    <div class="item-info right"
+         *ngIf="basket.hasOwnProperty(item.name) && basket[item.name] > 0">
+      Count: {{basket[item.name]}}
+    </div>
+    <div class="noselect">
+      <div class="control-btn add" (click)="addItem(item)">+</div>
+      <div class="control-btn remove" (click)="removeItem(item)">-</div>
+    </div>
+    <hr>
+  </div>
+</div>
