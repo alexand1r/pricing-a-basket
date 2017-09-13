@@ -14,15 +14,6 @@
   </div>
   <hr>
   <div class="right" id="total">
-    <h3>Total: {{convertedTotal | currency:currency:true}}</h3>
-  </div>
-  <div>
-    <select
-      [(ngModel)]="currency"
-      (ngModelChange)="onChange($event)"
-      name="currency" class="select"
-    >
-      <option *ngFor="let cur of currencies" [ngValue]="cur">{{cur}}</option>
-    </select>
+    <h3>Total: {{total * rate | currency:currency:true}}</h3>
   </div>
 </div>

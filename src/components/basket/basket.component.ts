@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { BasketService } from '../../services/basket.service';
 import { CurrencyService } from '../../services/currency.service';
 
@@ -6,40 +6,37 @@ import { CurrencyService } from '../../services/currency.service';
   selector: 'app-basket',
   templateUrl: './basket.html'
 })
-export class BasketComponent implements OnInit {
+export class BasketComponent implements OnInit, OnDestroy {
   emptyMsg = 'There are no items in your basket!';
   total: number;
   items: any = {};
   empty: boolean;
-  currencies: Array<string>;
-  rates: Array<{}>;
-  convertedTotal: number;
   currency: string;
+  rate: number;
+  currencySubscription: any;
+  rateSubscription: any;
 
   constructor(
     private basket: BasketService,
-    private currencyService: CurrencyService
-  ) {}
-
+    private currencyService: CurrencyService,
+  ) {
+    this.currency = currencyService.currency;
+    this.currencySubscription = currencyService.currencyChange.subscribe((value) => {
+      this.currency = value;
+    });
+    this.rate = currencyService.rate;
+    this.rateSubscription = currencyService.rateChange.subscribe((value) => {
+      this.rate = value;
+    });
+  }
   ngOnInit(): void {
     this.total = this.basket.total;
     this.items = this.basket.items;
     this.empty = this.basket.empty;
-    this.currencies = this.currencyService.getCurrencies();
-    this.currencyService.getCurrencyRates()
-      .then((data) => {
-        this.rates = data.json();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    this.convertedTotal = this.total;
-    this.currency = this.currencies[0];
   }
-
-  onChange(currency: string) {
-    this.convertedTotal = this.total * this.rates['quotes']['USD' + currency];
-    this.currency = currency;
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.currencySubscription.unsubscribe();
+    this.rateSubscription.unsubscribe();
   }
-
 }

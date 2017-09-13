@@ -1,6 +1,6 @@
 <div id="pick">
   <div class="item" *ngFor="let item of items">
-    <div class="item-info">{{item.name}} - {{item.price | currency:'USD':true}} {{item.amount}}</div>
+    <div class="item-info">{{item.name}} - {{item.price * rate | currency:currency:true}} {{item.amount}}</div>
     <div class="item-info right"
          *ngIf="basket.hasOwnProperty(item.name) && basket[item.name] > 0">
       Count: {{basket[item.name]}}

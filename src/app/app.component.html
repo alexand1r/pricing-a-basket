@@ -1,5 +1,14 @@
 <div style="text-align:center">
   <app-nav></app-nav>
+  <div>
+    <select
+      [(ngModel)]="currency"
+      (ngModelChange)="onChange($event)"
+      name="currency" class="select"
+    >
+      <option *ngFor="let cur of currencies" [ngValue]="cur">{{cur}}</option>
+    </select>
+  </div>
   <div id="content">
     <router-outlet></router-outlet>
   </div>
