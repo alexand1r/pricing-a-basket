@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GoodsService} from '../services/goods.service';
 import {Item} from '../data/item.interface';
 import {CurrencyService} from '../services/currency.service';
@@ -7,28 +7,16 @@ import {CurrencyService} from '../services/currency.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   items: Array<Item>;
   rates: Array<{}>;
   currencies: Array<string>;
   currency = 'USD';
-  rate: number;
-  currencySubscription: any;
-  rateSubscription: any;
 
   constructor(
     private goods: GoodsService,
     private currencyService: CurrencyService
-  ) {
-    this.currency = currencyService.currency;
-    this.currencySubscription = currencyService.currencyChange.subscribe((value) => {
-      this.currency = value;
-    });
-    this.rate = currencyService.rate;
-    this.rateSubscription = currencyService.rateChange.subscribe((value) => {
-      this.rate = value;
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.items = this.goods.getGoods();
@@ -40,12 +28,6 @@ export class AppComponent implements OnInit, OnDestroy {
       .catch((err) => {
         console.log(err);
       });
-  }
-
-  ngOnDestroy() {
-    // prevent memory leak when component destroyed
-    this.currencySubscription.unsubscribe();
-    this.rateSubscription.unsubscribe();
   }
 
   onChange(currency: string) {

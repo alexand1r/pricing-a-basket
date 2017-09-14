@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, EventEmitter, Output} from '@angular/core';
 import {GoodsService} from '../../services/goods.service';
 import {BasketService} from '../../services/basket.service';
 import {Item} from '../../data/item.interface';
@@ -10,29 +10,30 @@ import {CurrencyService} from '../../services/currency.service';
 })
 export class PickComponent implements OnInit, OnDestroy {
   items: Array<Item>;
-  basket: any = {};
+  basket: any = [];
+
   currency: string;
   rate: number;
   currencySubscription: any;
   rateSubscription: any;
+
   constructor(
     private goods: GoodsService,
     private basketService: BasketService,
     private currencyService: CurrencyService,
-  ) {
-    this.currency = currencyService.currency;
-    this.currencySubscription = currencyService.currencyChange.subscribe((value) => {
-      this.currency = value;
-    });
-    this.rate = currencyService.rate;
-    this.rateSubscription = currencyService.rateChange.subscribe((value) => {
-      this.rate = value;
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.items = this.goods.getGoods();
-    this.basket = this.basketService.items;
+    this.basket = this.basketService.basket;
+    this.currency = this.currencyService.currency;
+    this.currencySubscription = this.currencyService.currencyChange.subscribe((value) => {
+      this.currency = value;
+    });
+    this.rate = this.currencyService.rate;
+    this.rateSubscription = this.currencyService.rateChange.subscribe((value) => {
+      this.rate = value;
+    });
   }
 
   ngOnDestroy() {
@@ -47,5 +48,15 @@ export class PickComponent implements OnInit, OnDestroy {
 
   removeItem(item: Item) {
     this.basketService.removeItem(item);
+  }
+
+  checkItem(item: Item) {
+    const index = this.basket.findIndex(x => x.name === item.name);
+    return (index > -1 && this.basket[index].count > 0);
+  }
+
+  getCurrentIndex(item: Item) {
+    const index = this.basket.findIndex(x => x.name === item.name);
+    return this.basket[index].count;
   }
 }

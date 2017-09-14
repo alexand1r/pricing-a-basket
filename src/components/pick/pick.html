@@ -2,8 +2,8 @@
   <div class="item" *ngFor="let item of items">
     <div class="item-info">{{item.name}} - {{item.price * rate | currency:currency:true}} {{item.amount}}</div>
     <div class="item-info right"
-         *ngIf="basket.hasOwnProperty(item.name) && basket[item.name] > 0">
-      Count: {{basket[item.name]}}
+         *ngIf="checkItem(item)">
+      Count: {{getCurrentIndex(item)}}
     </div>
     <div class="noselect">
       <div class="control-btn add" (click)="addItem(item)">+</div>

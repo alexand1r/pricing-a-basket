@@ -1,15 +1,15 @@
 <div id="basket">
-  <div class="item" *ngFor="let item of items | keys">
-    <div class="item-info"
-         *ngIf="item.value > 0">
-      {{item.key}}
-    </div>
-    <div class="item-info right"
-         *ngIf="item.value > 0">
-      Count: {{item.value}}
+  <div class="item" *ngFor="let item of items">
+    <div *ngIf="item.count > 0">
+      <div class="item-info">
+        {{item.name}}
+      </div>
+      <div class="item-info right">
+        Count: {{item.count}}
+      </div>
     </div>
   </div>
-  <div class="empty" *ngIf="empty">
+  <div class="empty" *ngIf="items.length === 0">
     <h2>{{emptyMsg}}</h2>
   </div>
   <hr>

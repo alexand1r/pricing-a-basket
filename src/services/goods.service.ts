@@ -5,10 +5,10 @@ import {Item} from '../data/item.interface';
 export class GoodsService {
   getGoods(): Array<Item> {
     return [
-      {id: 1, name: 'Peas', price: 0.95, amount: 'per bag'},
-      {id: 2, name: 'Eggs', price: 2.10, amount: 'per dozen'},
-      {id: 3, name: 'Milk', price: 1.30, amount: 'per bottle'},
-      {id: 4, name: 'Beans', price: 0.73, amount: 'per can'}
-    ]
-  };
+      {name: 'Peas', price: 0.95, amount: 'per bag', 'count': 0},
+      {name: 'Eggs', price: 2.10, amount: 'per dozen', 'count': 0},
+      {name: 'Milk', price: 1.30, amount: 'per bottle', 'count': 0},
+      {name: 'Beans', price: 0.73, amount: 'per can', 'count': 0}
+    ];
+  }
 }
